@@ -12,7 +12,7 @@ export default () => {
   }, [i18n.language])
 
   return (
-    <main tw="absolute inset-0 flex flex-col justify-center items-center">
+    <main tw='absolute inset-0 flex flex-col justify-center items-center'>
       <h1>{t('hello world')}</h1>
     </main>
   )
