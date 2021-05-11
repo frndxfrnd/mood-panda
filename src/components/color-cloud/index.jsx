@@ -6,6 +6,8 @@ export default () => {
 
   useEffect(() => {
     const { current } = canvas
+
+    /* temporary side effect */ console.log(current)
   }, [canvas])
 
   return (
