@@ -2,8 +2,7 @@ module.exports = {
   parser: '@babel/eslint-parser',
   extends: [
     'standard',
-    'standard-jsx',
-    'standard-react'
+    'standard-jsx'
   ],
   rules: {
     'react/jsx-uses-react': 'off',
