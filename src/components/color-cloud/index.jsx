@@ -7,7 +7,7 @@ export default () => {
   useEffect(() => {
     const { current } = canvas
 
-    /* temporary side effect */ console.log(current)
+    /* const ctx = */ current.getContext('2d')
   }, [canvas])
 
   return (
