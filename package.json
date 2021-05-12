@@ -6,6 +6,8 @@
   "dependencies": {
     "@babel/runtime": "^7.13.17",
     "@compiled/react": "^0.6.10",
+    "axios": "^0.21.1",
+    "axios-hooks": "^2.6.1",
     "core-js": "^3.10.2",
     "i18next": "^19.8.7",
     "i18next-browser-languagedetector": "^6.0.1",
@@ -67,5 +69,7 @@
   "author": "iiwii",
   "license": "MIT",
   "homepage": "https://iiwii.github.io",
-  "sideEffects": false
+  "sideEffects": [
+    "./src/boot/**/*"
+  ]
 }
