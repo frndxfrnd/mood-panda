@@ -1,19 +1,17 @@
 import { useRef, useEffect } from 'react'
 
-import Canvas from './canvas'
-
 export default () => {
   const canvas = useRef(null)
 
   useEffect(() => {
     const { current } = canvas
 
-    /* const ctx = */ current.getContext('2d')
+    /* temporary side effect */ console.log(current)
   }, [canvas])
 
   return (
-    <div>
-      <Canvas />
-    </div>
+    <canvas
+      ref={canvas}
+    />
   )
 }
