@@ -4,8 +4,10 @@ import 'twin.macro'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import ColorCloud from '@/color-cloud'
+
 export default () => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
 
   useEffect(() => {
     document.documentElement.setAttribute('lang', i18n.language)
@@ -13,7 +15,7 @@ export default () => {
 
   return (
     <main tw='absolute inset-0 flex flex-col justify-center items-center'>
-      <h1>{t('hello world')}</h1>
+      <ColorCloud />
     </main>
   )
 }
