@@ -9,7 +9,10 @@ import Main from '@/main'
   // import boot files
   const context = require.context('@/boot')
   for (const key of context.keys()) {
-    await context(key).default()
+    const boot = context(key)
+    if (typeof boot === 'function') {
+      await context(key).default()
+    }
   }
 
   render(
