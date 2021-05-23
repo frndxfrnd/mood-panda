@@ -1,4 +1,4 @@
-name: deploy hosting release
+name: deploy hosting staging
 on:
   push:
     paths:
