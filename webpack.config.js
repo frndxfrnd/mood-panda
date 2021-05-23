@@ -7,7 +7,6 @@ const ProgressBarPlugin = require('simple-progress-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = [
   async (_env, argv) => {
@@ -54,7 +53,6 @@ module.exports = [
             ]
           }
         }),
-        new MiniCssExtractPlugin(),
         dev && hot && new webpack.HotModuleReplacementPlugin(),
         dev && hot && new ReactRefreshWebpackPlugin()
       ].filter(x => x),
@@ -70,7 +68,7 @@ module.exports = [
           {
             test: /\.css$/,
             use: [
-              MiniCssExtractPlugin.loader,
+              'style-loader',
               'css-loader'
             ]
           }

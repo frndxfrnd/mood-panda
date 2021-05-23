@@ -15,7 +15,7 @@ export default () => {
 
   return (
     <main tw='absolute inset-0 flex flex-col justify-center items-center'>
-      <ColorCloud />
+      <ColorCloud tw='w-full h-full object-contain' />
     </main>
   )
 }
