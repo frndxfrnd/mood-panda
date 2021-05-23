@@ -3,6 +3,7 @@
     "allowJs": true,
     "checkJs": true,
     "noEmit": true,
+    "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*", "src/components/*"]
