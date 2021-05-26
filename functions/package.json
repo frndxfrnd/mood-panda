@@ -16,7 +16,9 @@
   },
   "main": "index.js",
   "dependencies": {
+    "@types/cookie-session": "^2.0.42",
     "axios": "^0.21.1",
+    "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "firebase-admin": "^9.2.0",
