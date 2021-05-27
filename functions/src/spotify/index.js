@@ -2,7 +2,6 @@ import { https, config } from 'firebase-functions'
 
 import axios from 'axios'
 import express from 'express'
-import cors from 'cors'
 
 import crypto from 'crypto'
 
@@ -13,8 +12,6 @@ const auth = axios.create({
 })
 
 const app = express()
-
-app.use(cors())
 
 // cookie session
 app.use(cookieSession({
@@ -52,8 +49,8 @@ app.use((req, res, next) => {
         await refresh(req.session)
         return await client(err.config)
       default:
-        res.status(err.response?.status)
-        res.json(err.response?.data)
+        req.session = undefined
+        throw err
     }
   })
 
@@ -69,18 +66,27 @@ app.get('/login', async (req, res) => {
 })
 
 app.get('/callback', async (req, res) => {
-  const code = req.query.code
+  // check state
   if (req.query.state !== req.session.state) {
     console.error(req.query.state, req.session.state)
     res.status(401)
     res.json({
-      error: 'invalid-state'
+      error: 'invalid-state',
+      message: 'Invalid state.'
     })
     return
   }
 
+  // in case of error
+  if (req.query.error) {
+    res.status(401)
+    res.send(req.query.error)
+
+    return
+  }
+
   try {
-    const result = await auth.post('/api/token', encodeURI(`grant_type=authorization_code&code=${code}&redirect_uri=http://localhost:5001/mood-panda/us-central1/spotify/callback`), {
+    const result = await auth.post('/api/token', encodeURI(`grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:5001/mood-panda/us-central1/spotify/callback`), {
       headers: {
         Authorization: `Basic ${Buffer.from(`${config().spotify.id}:${config().spotify.key}`).toString('base64')}`,
         'content-type': 'application/x-www-form-urlencoded'
@@ -93,13 +99,11 @@ app.get('/callback', async (req, res) => {
 
     res.json(result.data)
   } catch (e) {
-    console.error(e)
     if (e.response) {
       res.status(e.response.status)
       res.json(e.response.data)
     } else {
-      res.status(500)
-      res.end()
+      throw e
     }
   }
 })
@@ -118,14 +122,11 @@ app.get('/history', async (req, res) => {
 
     res.json(audioFeatures.data.audio_features.map((e, i) => ({ id: ids[i], audio_features: e })))
   } catch (e) {
-    console.error(e)
     if (e.response) {
       res.status(e.response.status)
       res.json(e.response.data)
     } else {
-      console.error(e)
-      res.status(500)
-      res.end()
+      throw e
     }
   }
 })
