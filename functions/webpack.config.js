@@ -1,5 +1,6 @@
 const path = require('path')
 
+// @ts-ignore
 const nodeExternals = require('webpack-node-externals')
 const CopyPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -14,6 +15,9 @@ module.exports = {
   target: 'node',
   resolve: {
     extensions: ['.js']
+  },
+  externalsPresets: {
+    node: true
   },
   externals: [nodeExternals()],
   plugins: [
