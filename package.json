@@ -28,6 +28,7 @@
     "@compiled/babel-plugin-strip-runtime": "^0.6.13",
     "@compiled/webpack-loader": "^0.6.15",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@types/cookie-session": "^2.0.42",
     "@types/react": "^17.0.3",
     "@types/webpack-env": "^1.16.0",
     "autoprefixer": "^10.2.4",
