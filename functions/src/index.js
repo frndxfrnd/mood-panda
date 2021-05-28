@@ -1,5 +1,5 @@
 import 'firebase-functions/lib/logger/compat'
-import { initializeApp } from 'firebase-admin'
-initializeApp()
+import admin from 'firebase-admin'
+admin.initializeApp()
 
 export { default as spotify } from './spotify'
